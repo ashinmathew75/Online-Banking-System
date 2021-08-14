@@ -1,0 +1,69 @@
+create role java_user LOGIN password 'p4ssw0rd';
+
+create table customer_table(
+	customer_id serial primary key,
+	first_name varchar(30) not null,
+	last_name varchar(30) not null
+);
+
+--select * from customer_table;
+
+create table employee_table(
+	employee_id serial primary key,
+	first_name varchar(30) not null,
+	last_name varchar(30) not null,
+	employee_title varchar(20)
+);
+
+create table customer_login(
+	customer_id int unique not null references customer_table(customer_id),
+	customer_username varchar(20) not null,
+	customer_pswd varchar(30) not null
+);
+
+create table employee_login(
+	employee_id int unique not null references employee_table(employee_id),
+	employee_username varchar(20) not null,
+	employee_pswd varchar(30) not null
+);
+
+create table account_information(
+	customer_id int references customer_table(customer_id),
+	account_number int not null unique,
+	account_type varchar(30) not null,
+	account_balance numeric not null,
+	account_approved boolean not null
+);
+
+create table case_history(
+	case_id serial primary key,
+	account_number int not null references account_information(account_number),
+	case_subject varchar(30) not null,
+	case_description varchar(100),
+	case_resolved boolean not null
+);
+
+create table deposit_history(
+	deposite_id serial primary key,
+	deposite_timestamp timestamp not null,
+	customer_id int not null references customer_table(customer_id),
+	account_number int not null references account_information(account_number),
+	deposite_amount numeric not null
+);
+
+create table withdraw_history(
+	withdraw_id serial primary key,
+	withdraw_timestamp timestamp not null,
+	customer_id int not null references customer_table(customer_id),
+	account_number int not null references account_information(account_number),
+	withdraw_amount numeric not null
+);
+
+create table transfer_history(
+	transfer_id serial primary key,
+	transfer_timestamp timestamp not null,
+	customer_id int not null references customer_table(customer_id),
+	transfer_from_account_number int not null references account_information(account_number),
+	transfer_to_account_number int not null,
+	transfer_amount numeric not null
+);

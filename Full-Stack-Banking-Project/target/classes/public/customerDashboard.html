@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Customer Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Roboto:wght@400;500;900&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+
+
+  <!-- CSS Stylesheets -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+  <!-- External style sheet -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+  <!-- Font Awesome icons -->
+  <script src="https://kit.fontawesome.com/774702c6e4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <section id="customer-dashboard">
+    <div class="container-fluid">
+
+      <div class="row left-row">
+        <div class="col-lg-6">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href=""><i class="fas fa-university"></i> Revature Bank</a>
+          </nav>
+
+          <div class="Customer Name">
+            <h4 id = "customerName-cutsomerDashbaord"></h4>
+          </div>
+
+          <div>
+            <table id="bank-table" class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Account Number</th>
+                  <th scope="col">Account Type</th>
+                  <th scope="col">Account Balance</th>
+                  <th scope="col">Account Approved</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+          <div class="create-account-button">
+            <button type="button" class="btn btn-dark btn-lg create-account-button" href="#createAccount" class="edit" title="CreateAccount" data-toggle="modal">Create New Account</button>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+          <nav class="navbar navbar-expand-lg navbar-light">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav nav-tabs" id="myTab" role="tablist" navbar-nav ml-auto>
+                <li class="nav-item">
+                  <a class="nav-link active" id="deposit-tab" data-toggle="tab" href="#deposit" role="tab" aria-controls="deposit" aria-selected="true">Deposit</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="withdraw-tab" data-toggle="tab" href="#withdraw" role="tab" aria-controls="withdraw" aria-selected="false">Withdraw</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="transfer-tab" data-toggle="tab" href="#transfer" role="tab" aria-controls="transfer" aria-selected="false">Transfer</a>
+                </li>
+
+                <form action="/logout" method="GET">
+                  <div class="form-group nav-item">
+                    <button type="submit" class="btn btn-warning">Log Out</button>
+                  </div>
+                </form>
+
+              </ul>
+            </div>
+
+
+          </nav>
+
+          <div class="tab-content" id="myTabContent">
+
+            <!-- Deposit form -->
+            <div class="tab-pane fade show active" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+
+              <form class="form-structure" action="/customerDeposit" method="POST" id="customer-deposit-form">
+                <div class="form-group">
+                  <label>Enter Deposit Amount <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="depositAmount" placeholder="Amount must be greater than 0" step=".01" required>
+                </div>
+                <div class="form-group">
+                  <label>Enter Account Number <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="accountNumber" placeholder="Must have 8 digits" required>
+                </div>
+                <div class="form-group">
+                  <button type="submit" value="depositButton" class="btn btn-success">Confirm</button>
+                </div>
+              </form>
+
+            </div>
+
+            <!-- withdraw form -->
+            <div class="tab-pane fade" id="withdraw" role="tabpanel" aria-labelledby="withdraw-tab">
+
+              <form class="form-structure" action="/customerWithdraw" method="POST" id="customer-withdraw-form">
+                <div class="form-group">
+                  <label>Enter Withdraw Amount <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="withdrawAmount" placeholder="Amount must be greater than 0" step=".01" required>
+                </div>
+                <div class="form-group">
+                  <label>Enter Account Number <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="withdrawAccount" placeholder="Must have 8 digits" min="1" onkeyup="if(this.value<0){this.value= this.value * -1}" required>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success">Confirm</button>
+                </div>
+              </form>
+
+            </div>
+
+            <!-- transfer form -->
+            <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="transfer-tab">
+
+              <form class="form-structure" action="/customerTransfer" method="POST" id="customer-transfer-form">
+                <div class="form-group">
+                  <label>Enter Transfer Amount <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="transferAmount" placeholder="Amount must be greater than 0" min="1" onkeyup="if(this.value<0){this.value= this.value * -1}" required>
+                </div>
+                <div class="form-group">
+                  <label>Enter Transfer To <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="transfer-to-account" placeholder="Account number of the person you like to transfer money" min="1" onkeyup="if(this.value<0){this.value= this.value * -1}" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Enter Transfer From <span class="require">*</span> </label>
+                  <input type="number" class="form-control" name="transfer-from-account" placeholder="Your Account Number" min="1" onkeyup="if(this.value<0){this.value= this.value * -1}" required>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success">Confirm</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+    <!-- createAccount Modal HTML -->
+    <div id="createAccount" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form class="form-structure" action="/customerAnotherAccount" method="POST" id="create-another-account-form">
+            <div class="modal-header">
+              <h4 class="modal-title">Create Account</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label>Select Account Type *</label>
+                <select class="form-select" id="create-accountType" name="createAccountType" required>
+                  <option selected>Choose..</option>
+                  <option value="Checking Account">Checking Account</option>
+                  <option value="Savings Account">Savings Account</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Initial Deposit</label>
+                <input type="number" class="form-control" name="createInitialDeposit">
+              </div>
+              <div class="form-group">
+                <label>*** Note: Creating new account needs employee approval. ***</label>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+              <input type="submit" class="btn btn-success" value="Create Account">
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <script src="customer-dashboard.js"></script>
+
+</body>
+
+</html>

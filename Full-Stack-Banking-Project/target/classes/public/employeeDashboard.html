@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Employee Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Roboto:wght@400;500;900&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+
+
+  <!-- CSS Stylesheets -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+  <!-- External style sheet -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+  <!-- Font Awesome icons -->
+  <script src="https://kit.fontawesome.com/774702c6e4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <section id="employee-dashboard">
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href=""><i class="fas fa-university"></i> Revature Bank</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav nav-tabs" id="myTab" role="tablist" navbar-nav ml-auto>
+            <li class="nav-item">
+              <a class="nav-link active" id="unapproved-account-tab" data-toggle="tab" href="#unapprovedAccount" role="tab" aria-controls="unapprove" aria-selected="true">View Unapproved Accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="all-account-tab" data-toggle="tab" href="#allAccount" role="tab" aria-controls="allAcc" aria-selected="false">View All Accounts</a>
+            </li>
+
+            <form action="/logout" method="GET">
+              <div class="form-group nav-item">
+                <button type="submit" class="btn btn-warning">Log Out</button>
+              </div>
+            </form>
+
+          </ul>
+        </div>
+
+
+      </nav>
+
+      <div class="tab-content" id="myTabContent">
+
+        <!-- un approved table -->
+        <div class="tab-pane fade show active" id="unapprovedAccount" role="tabpanel" aria-labelledby="unapproved-account-tab">
+
+          <table id="unapproved-table" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Customer ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Account Type</th>
+                <th scope="col">Account Balance</th>
+                <th scope="col">Account Approved</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+          </table>
+
+        </div>
+
+        <!-- all accounts -->
+        <div class="tab-pane fade" id="allAccount" role="tabpanel" aria-labelledby="all-account-tab">
+
+          <table id="allAccount-table" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Customer ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Account Type</th>
+                <th scope="col">Account Balance</th>
+                <th scope="col">Account Approved</th>
+              </tr>
+            </thead>
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <script src="employee.js"></script>
+
+</body>
+
+</html>
